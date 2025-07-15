@@ -11,7 +11,7 @@
 	font-size: 40px;
 }
 .rngbutton {
-	color: "#fff";
+	background-color: "#fff";
 	width: 140px;
 	height: 60px;
 }
@@ -19,12 +19,12 @@
 	transform: scale(1.1);
 }
 .rngbutton:disabled {
-	color: "#888";
+	background-color: "#888";
 	width: 140px;
 	height: 60px;
 }
 .rngbutton:active {
-	color: "#ccc";
+	background-color: "#ccc";
 	width: 140px;
 	height: 60px;
 }
