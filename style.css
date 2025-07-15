@@ -10,6 +10,11 @@
 #rarity {
 	font-size: 40px;
 }
+.rngbutton {
+	color: "#fff";
+	width: 140px;
+	height: 60px;
+}
 .rngbutton:hover {
 	transform: scale(1.1);
 }
