@@ -3,16 +3,25 @@ let data = {
 	highestRNG: "1.01",
 	rarity: {
 		name: "Common",
+		gradient: ["#888"],
 		mutations: [],
 	},
 	highestRarity: {
 		name: "Common",
+		gradient: ["#888"],
 		mutations: [],
 	},
+	inventory: new Map(),
 	luck: 1,
 	cooldown: 0,
-};
-let uptime = 0;
+}, youRolled = {
+	rarity: {
+		name: "Common",
+		gradient: ["#888"],
+	},
+	chance: "1.01",
+}
+let uptime = 0, RNG = 1.01;
 function decimalDigits(number, digits) {
 	let idfk = Math.floor(Math.log10(Math.abs(number)))
 	return (
@@ -34,6 +43,29 @@ function commaFormat(num) {
 	if (portions.length == 1)
 		return portions[0]
 	return portions[0] + "." + portions[1]
+}
+function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
+	if (
+		decimalDigits(RNG,2) >= min
+		&& decimalDigits(RNG,2) < max
+	) {
+		data.rarity.name = name;
+		data.rarity.gradient = gradient;
+		if (!data.inventory.has(name)) {
+			data.inventory.set(name,1);
+		} else {
+			data.inventory.set(name,data.inventory.get(name)+1);
+		}
+	}
+}
+function roll() {
+	data.luck += RNG**(1/5)-1;
+	makeRarity("Common","1.01","2.50",["#888"]);
+	document.getElementById("rarity").innerHTML += "<span style=\"background: linear-gradient(90deg, ";
+	for (let i of data.rarity.gradient) {
+		document.getElementById("rarity").innerHTML += (data.rarity.gradient[data.rarity.gradient - 1].length != i) ? (i + ", ") : i;
+	}
+	document.getElementByid("rarity").innerHTML += "); background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
 }
 !function update(){
 	/* Updates */
