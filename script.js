@@ -1,3 +1,4 @@
+// j
 let data = {
 	RNG: "1.01",
 	highestRNG: "1.01",
