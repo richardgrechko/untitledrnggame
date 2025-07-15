@@ -1,0 +1,12 @@
+* {
+	background-color: black;
+	color: white;
+	font-size: 12px;
+	font-family: monospace;
+}
+#rng {
+	font-size: 16px;
+}
+#rarity {
+	font-size: 20px;
+}
