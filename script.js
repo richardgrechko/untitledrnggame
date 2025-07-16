@@ -47,7 +47,7 @@ function commaFormat(num) {
 function makeGradient(gradient) {
 	let someGradient = "linear-gradient(90deg, ";
 	for (let i of gradient) {
-		someGradient += (data.rarity.gradient[data.rarity.gradient.length - 1] != i) ? (i + ", ") : i;
+		someGradient += (gradient[gradient.length - 1] != i) ? (i + ", ") : i;
 	}
 	someGradient += ")";
 	return someGradient
