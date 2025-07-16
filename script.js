@@ -61,6 +61,8 @@ function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
 function roll() {
 	data.luck += RNG**(1/5)-1;
 	makeRarity("Common","1.01","2.50",["#888"]);
+	document.getElementById("rng").innerHTML = data.RNG + " ~ " + data.highestRNG;
+	document.getElementById("rarity").innerHTML += "";
 	document.getElementById("rarity").innerHTML += "<span style=\"background: linear-gradient(90deg, ";
 	for (let i of data.rarity.gradient) {
 		document.getElementById("rarity").innerHTML += (data.rarity.gradient[data.rarity.gradient - 1].length != i) ? (i + ", ") : i;
