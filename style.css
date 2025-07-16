@@ -12,7 +12,7 @@ html {
 }
 .rngbutton {
 	background-color: #fff;
-	color: white;
+	color: black;
 	font-size: 24px;
 	font-family: monospace;
 	width: 140px;
@@ -23,7 +23,7 @@ html {
 }
 .rngbutton:disabled {
 	background-color: #888;
-	color: white;
+	color: #444;
 	font-size: 24px;
 	font-family: monospace;
 	width: 140px;
@@ -31,7 +31,7 @@ html {
 }
 .rngbutton:active {
 	background-color: #ccc;
-	color: white;
+	color: #222;
 	font-size: 24px;
 	font-family: monospace;
 	width: 140px;
