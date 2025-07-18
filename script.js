@@ -68,6 +68,7 @@ function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
 }
 function roll() {
 	data.luck += RNG**(1/5)-1;
+	RNG = (1/Math.random())**data.luck;
 	makeRarity("Common","1.01","2.50",["#888"]);
 	document.getElementById("rng").innerText = data.RNG + " ~ " + data.highestRNG;
 	document.getElementById("rarity").innerText = "";
