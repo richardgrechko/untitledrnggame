@@ -69,11 +69,12 @@ function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
 function roll() {
 	data.luck += RNG**(1/5)-1;
 	makeRarity("Common","1.01","2.50",["#888"]);
-	document.getElementById("rng").innerHTML = data.RNG + " ~ " + data.highestRNG;
-	document.getElementById("rarity").innerHTML += "";
-	document.getElementById("rarity").innerHTML += "<span style=\"background: ";
-	document.getElementById("rarity").innerHTML += makeGradient(data.rarity.gradient);
-	document.getElementByid("rarity").innerHTML += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
+	document.getElementById("rng").innerText = data.RNG + " ~ " + data.highestRNG;
+	document.getElementById("rarity").innerText = "";
+	document.getElementById("rarity").innerText += "<span style=\"background: ";
+	document.getElementById("rarity").innerText += makeGradient(data.rarity.gradient);
+	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
+	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText
 }
 !function update(){
 	/* Updates */
