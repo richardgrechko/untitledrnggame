@@ -143,6 +143,7 @@ function makeMutation(options) {
 	}
 }
 function roll() {
+	data.rarity.mutations = [];
 	RNG = (1/Math.random())**(Math.log10(data.luck)+1);
 	rawRNG = RNG;
 	makeChanceSecret({name:"¿Cursed?",chance:"1.00",gradient:{colors:["#200","#500","#200"],speed:5}});
@@ -161,6 +162,8 @@ function roll() {
 	makeRarity({name:"Reminiscent",min:"10000.00",max:"25000.00",gradient:{colors:["#cd7d2b","#e0de32","#dedd7a","#e0de32","#cd7d2b"]}});
 	makeMutation({name:"Upgraded",chance:"50.00",multi:"5.00",gradient:["#b2e8eb","#76e0e5"]});
 	makeMutation({name:"Advanced",chance:"500.00",multi:"35.00",gradient:["#5eabe6","#5397cb"]});
+	RNG *= mutationMultis;
+	rawRNG *= mutationMultis;
 	data.luck += (RNG**(1/3)-1)/10;
 	data.RNG = decimalDigits(RNG,2);
 	data.rawRNG = decimalDigits(rawRNG,2);
