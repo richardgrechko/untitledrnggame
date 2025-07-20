@@ -13,6 +13,7 @@ let data = {
 		gradient: ["#888"],
 		mutations: [],
 	},
+	secret: false,
 	inventory: new Map(),
 	luck: 1,
 	cooldown: 0,
@@ -23,7 +24,7 @@ let data = {
 	},
 	chance: "1.01",
 }
-let uptime = 0, RNG = 1.01, mutationMultis = 1, mutationChances = {};
+let uptime = 0, RNG = 1.01, rawRNG = 1.01, mutationMultis = 1, mutationChances = {};
 function decimalDigits(number, digits) {
 	let idfk = Math.floor(Math.log10(Math.abs(number)))
 	return (
@@ -46,8 +47,8 @@ function commaFormat(num) {
 		return portions[0]
 	return portions[0] + "." + portions[1]
 }
-function makeGradient(gradient) {
-	let someGradient = "linear-gradient(" + (uptime*90) + "deg, ";
+function makeGradient(gradient,speed) {
+	let someGradient = "linear-gradient(" + (uptime*90*speed) + "deg, ";
 	for (let i of gradient) {
 		someGradient += (gradient[gradient.length - 1] != i) ? (i + ", ") : i;
 	}
@@ -60,7 +61,10 @@ function makeRarity(options) {
 		max: options.max ?? "1.01",
 		secrets: options.secrets ?? ["1.00"],
 		name: options.name ?? "Common",
-		gradient: options.gradient ?? ["#888"],
+		gradient: {
+			colors: options.gradient.colors ?? ["#888"],
+			speed: options.gradient.speed ?? 1,
+		}
 	}
 	if (
 		Number(decimalDigits(RNG,2)) >= Number(options.min)
@@ -68,7 +72,7 @@ function makeRarity(options) {
 		&& options.secrets.includes(decimalDigits(RNG,2))
 	) {
 		data.rarity.name = options.name;
-		data.rarity.gradient = options.gradient;
+		data.rarity.gradient = [options.gradient.colors,options.gradient.speed];
 		if (!data.inventory.has(options.name)) {
 			data.inventory.set(options.name,1);
 		} else {
@@ -80,15 +84,18 @@ function makeChanceSecret(options) {
 	options = {
 		chance: options.chance ?? "1.01",
 		name: options.name ?? "Common",
-		gradient: options.gradient ?? ["#888"],
+		gradient: {
+			colors: options.gradient.colors ?? ["#888"],
+			speed: options.gradient.speed ?? 1,
+		}
 	}
 	if (
 		Number(decimalDigits(RNG,2)) == Number(options.chance)
 	) {
-		RNG = Number(options.chance);
-		data.rawRNG = decimalDigits(options.chance*100,2);
+		rawRNG = Number(options.chance*100);
+		data.rawRNG = decimalDigits(rawRNG,2);
 		data.rarity.name = options.name;
-		data.rarity.gradient = options.gradient;
+		data.rarity.gradient = [options.gradient.colors,options.gradient.speed];
 		if (!data.inventory.has(options.name)) {
 			data.inventory.set(options.name,1);
 		} else {
@@ -100,13 +107,16 @@ function makeFinalRarity(options) {
 	options = {
 		chance: options.chance ?? "1.01",
 		name: options.name ?? "Common",
-		gradient: options.gradient ?? ["#888"],
+		gradient: {
+			colors: options.gradient.colors ?? ["#888"],
+			speed: options.gradient.speed ?? 1,
+		}
 	}
 	if (
 		Number(decimalDigits(RNG,2)) >= Number(options.chance)
 	) {
 		data.rarity.name = options.name;
-		data.rarity.gradient = options.gradient;
+		data.rarity.gradient = [options.gradient.colors,options.gradient.speed];
 		if (!data.inventory.has(options.name)) {
 			data.inventory.set(options.name,1);
 		} else {
@@ -134,19 +144,21 @@ function makeMutation(options) {
 }
 function roll() {
 	RNG = (1/Math.random())**(Math.log10(data.luck)+1);
-	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:["#888"]});
-	makeRarity({name:"Uncommon",min:"2.50",max:"5.00",gradient:["#8cc28e"]});
-	makeRarity({name:"Surreal",min:"5.00",max:"10.00",gradient:["#69c9ab"]});
-	makeRarity({name:"Rare",min:"10.00",max:"25.00",gradient:["#4bd3db"]});
-	makeRarity({name:"Tactical",min:"25.00",max:"50.00",gradient:["#3b80e1"]});
-	makeRarity({name:"Epic",min:"50.00",max:"100.00",gradient:["#7626eb"]});
-	makeRarity({name:"Legendary",min:"100.00",max:"250.00",gradient:["#f0ee36","#c5c31f"]});
-	makeRarity({name:"Exotic",min:"250.00",max:"500.00",gradient:["#f0be35","#d16634"]});
-	makeRarity({name:"Preeminent",min:"500.00",max:"1000.00",gradient:["#f06a35","#d14e34"]});
-	makeRarity({name:"Mythical",min:"1000.00",max:"2500.00",gradient:["#f03535","#bd2a53"]});
-	makeRarity({name:"Divine",min:"2500.00",max:"5000.00",gradient:["#a225a8","#d979de","#a225a8"]});
-	makeRarity({name:"Sacred",min:"5000.00",max:"10000.00",gradient:["#25a8a8","#dedd7a","#25a8a8"]});
-	makeRarity({name:"Reminiscent",min:"10000.00",max:"25000.00",gradient:["#cd7d2b","#e0de32","#dedd7a","#e0de32","#cd7d2b"]});
+	rawRNG = RNG;
+	makeRarity({name:"cursed",min:"1.01",max:"2.50",gradient:{colors:["#200","#500","#200"],speed:5}});
+	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:{colors:["#888"]}});
+	makeRarity({name:"Uncommon",min:"2.50",max:"5.00",gradient:{colors:["#8cc28e"]}});
+	makeRarity({name:"Surreal",min:"5.00",max:"10.00",gradient:{colors:["#69c9ab"]}});
+	makeRarity({name:"Rare",min:"10.00",max:"25.00",gradient:{colors:["#4bd3db"]}});
+	makeRarity({name:"Tactical",min:"25.00",max:"50.00",gradient:{colors:["#3b80e1"]}});
+	makeRarity({name:"Epic",min:"50.00",max:"100.00",gradient:{colors:["#7626eb"]}});
+	makeRarity({name:"Legendary",min:"100.00",max:"250.00",gradient:{colors:["#f0ee36","#c5c31f"]}});
+	makeRarity({name:"Exotic",min:"250.00",max:"500.00",gradient:{colors:["#f0be35","#d16634"]}});
+	makeRarity({name:"Preeminent",min:"500.00",max:"1000.00",gradient:{colors:["#f06a35","#d14e34"]}});
+	makeRarity({name:"Mythical",min:"1000.00",max:"2500.00",gradient:{colors:["#f03535","#bd2a53"]}});
+	makeRarity({name:"Divine",min:"2500.00",max:"5000.00",gradient:{colors:["#a225a8","#d979de","#a225a8"]}});
+	makeRarity({name:"Sacred",min:"5000.00",max:"10000.00",gradient:{colors:["#25a8a8","#dedd7a","#25a8a8"]}});
+	makeRarity({name:"Reminiscent",min:"10000.00",max:"25000.00",gradient:{colors:["#cd7d2b","#e0de32","#dedd7a","#e0de32","#cd7d2b"]}});
 	makeMutation({name:"Upgraded",chance:"50.00",multi:"5.00",gradient:["#b2e8eb","#76e0e5"]});
 	makeMutation({name:"Advanced",chance:"500.00",multi:"35.00",gradient:["#5eabe6","#5397cb"]});
 	data.luck += (RNG**(1/3)-1)/10;
@@ -171,7 +183,7 @@ function update(){
 		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + mut.name + " </span>";
 	}
 	document.getElementById("rarity").innerText += "<span style=\"background: "
-		+ makeGradient(data.rarity.gradient) 
+		+ makeGradient(...data.rarity.gradient) 
 		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
 	for (var mut of data.highestRarity.mutations) {
 		document.getElementById("rarity").innerText += "<span style=\"background: "
@@ -179,7 +191,7 @@ function update(){
 		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + mut.name + " </span>";
 	}
 	document.getElementById("rarity").innerText += "<span style=\"background: "
-		+ makeGradient(data.highestRarity.gradient)
+		+ makeGradient(...data.highestRarity.gradient)
 		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText.replace(" ~"," ~ ");
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
