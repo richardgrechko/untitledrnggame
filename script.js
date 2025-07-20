@@ -86,6 +86,7 @@ function makeChanceSecret(options) {
 		Number(decimalDigits(RNG,2)) == Number(options.chance)
 	) {
 		RNG = Number(options.chance);
+		data.rawRNG = decimalDigits(options.chance*100,2);
 		data.rarity.name = options.name;
 		data.rarity.gradient = options.gradient;
 		if (!data.inventory.has(options.name)) {
@@ -146,13 +147,13 @@ function roll() {
 	makeRarity({name:"Divine",min:"2500.00",max:"5000.00",gradient:["#a225a8","#d979de","#a225a8"]});
 	makeRarity({name:"Sacred",min:"5000.00",max:"10000.00",gradient:["#25a8a8","#dedd7a","#25a8a8"]});
 	makeRarity({name:"Reminiscent",min:"10000.00",max:"25000.00",gradient:["#cd7d2b","#e0de32","#dedd7a","#e0de32","#cd7d2b"]});
-	makeMutation({name:"Advanced",chance:"50.00",multi:"5.00",gradient:["#b2e8eb","#76e0e5"]});
-	makeMutation({name:"Upgraded",chance:"500.00",multi:"35.00",gradient:["#5eabe6","#5397cb"]});
+	makeMutation({name:"Upgraded",chance:"50.00",multi:"5.00",gradient:["#b2e8eb","#76e0e5"]});
+	makeMutation({name:"Advanced",chance:"500.00",multi:"35.00",gradient:["#5eabe6","#5397cb"]});
 	data.luck += (RNG**(1/3)-1)/10;
 	data.RNG = decimalDigits(RNG,2);
 	data.cooldown = uptime+15;
-	if (Number(data.RNG) > Number(data.highestRNG)) {
-		data.highestRNG = data.RNG;
+	if (Number(data.rawRNG) > Number(data.highestRawRNG)) {
+		data.highestRawRNG = data.rawRNG;
 		data.highestRarity.name = data.rarity.name;
 		data.highestRarity.gradient = data.rarity.gradient;
 		data.highestRarity.mutations = data.rarity.mutations;
