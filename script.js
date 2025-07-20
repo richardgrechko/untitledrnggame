@@ -108,5 +108,12 @@ function roll() {
 !function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
+	if (uptime < data.cooldown) {
+		document.getElementById("roll").disabled = true;
+		document.getElementById("roll").value = data.cooldown-uptime;
+	} else {
+		document.getElementById("roll").disabled = false;
+		document.getElementById("roll").value = "Roll!";
+	}
 	requestAnimationFrame(update)
 }()
