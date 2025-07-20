@@ -104,18 +104,18 @@ function roll() {
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 }
-if (document.getElementsByClassName("rngbutton")[0].disabled == undefined) {
-	document.getElementsByClassName("rngbutton")[0].disabled = false;
+if (document.querySelector("button.rngbutton").disabled == undefined) {
+	document.querySelector("button.rngbutton").disabled = false;
 }
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
 	if (uptime < data.cooldown) {
-		document.getElementsByClassName("rngbutton")[0].disabled = true;
-		document.getElementsByClassName("rngbutton")[0].value = decimalDigits(data.cooldown-uptime,3) + "s";
+		document.querySelector("button.rngbutton").disabled = true;
+		document.querySelector("button.rngbutton").value = decimalDigits(data.cooldown-uptime,3);
 	} else {
-		document.getElementsByClassName("rngbutton")[0].disabled = false;
-		document.getElementsByClassName("rngbutton")[0].value = "Roll!";
+		document.querySelector("button.rngbutton").disabled = false;
+		document.querySelector("button.rngbutton").value = "Roll!";
 	}
 	setTimeout(update,0)
 }
