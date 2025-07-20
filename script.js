@@ -54,8 +54,8 @@ function makeGradient(gradient) {
 }
 function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
 	if (
-		Number(decimalDigits(RNG,2)) >= min
-		&& Number(decimalDigits(RNG,2)) < max
+		Number(decimalDigits(RNG,2)) >= Number(min)
+		&& Number(decimalDigits(RNG,2)) < Number(max)
 	) {
 		data.rarity.name = name;
 		data.rarity.gradient = gradient;
@@ -68,7 +68,7 @@ function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
 }
 function makeFinalRarity(name="Common",chance="1.01",gradient=["#888"]) {
 	if (
-		Number(decimalDigits(RNG,2)) >= chance
+		Number(decimalDigits(RNG,2)) >= Number(chance)
 	) {
 		data.rarity.name = name;
 		data.rarity.gradient = gradient;
