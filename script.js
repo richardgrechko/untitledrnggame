@@ -52,46 +52,59 @@ function makeGradient(gradient) {
 	someGradient += ")";
 	return someGradient
 }
-function makeRarity(name="Common",min="1.01",max="1.01",gradient=["#888"]) {
+function makeRarity(options) {
+	options = {
+		min: options.min ?? "1.01",
+		max: options.max ?? "1.01",
+		secrets: options.secrets ?? ["1.00"],
+		name: options.name ?? "Common",
+		gradient: options.gradient ?? ["#888"],
+	}
 	if (
-		Number(decimalDigits(RNG,2)) >= Number(min)
-		&& Number(decimalDigits(RNG,2)) < Number(max)
+		Number(decimalDigits(RNG,2)) >= Number(options.min)
+		&& Number(decimalDigits(RNG,2)) < Number(options.max)
+		&& options.secrets.includes(decimalDigits(RNG,2))
 	) {
-		data.rarity.name = name;
-		data.rarity.gradient = gradient;
-		if (!data.inventory.has(name)) {
-			data.inventory.set(name,1);
+		data.rarity.name = options.name;
+		data.rarity.gradient = options.gradient;
+		if (!data.inventory.has(options.name)) {
+			data.inventory.set(options.name,1);
 		} else {
-			data.inventory.set(name,data.inventory.get(name)+1);
+			data.inventory.set(options.name,data.inventory.get(options.name)+1);
 		}
 	}
 }
-function makeFinalRarity(name="Common",chance="1.01",gradient=["#888"]) {
+function makeFinalRarity(options) {
+	options = {
+		chance: options.chance ?? "1.01",
+		name: options.name ?? "Common",
+		gradient: options.gradient ?? ["#888"],
+	}
 	if (
-		Number(decimalDigits(RNG,2)) >= Number(chance)
+		Number(decimalDigits(RNG,2)) >= Number(options.chance)
 	) {
-		data.rarity.name = name;
-		data.rarity.gradient = gradient;
-		if (!data.inventory.has(name)) {
-			data.inventory.set(name,1);
+		data.rarity.name = options.name;
+		data.rarity.gradient = options.gradient;
+		if (!data.inventory.has(options.name)) {
+			data.inventory.set(options.name,1);
 		} else {
-			data.inventory.set(name,data.inventory.get(name)+1);
+			data.inventory.set(options.name,data.inventory.get(options.name)+1);
 		}
 	}
 }
 function roll() {
 	RNG = (1/Math.random())**(Math.log10(data.luck)+1);
-	makeRarity("Common","1.01","2.50",["#888"]);
-	makeRarity("Uncommon","2.50","5.00",["#8cc28e"]);
-	makeRarity("Surreal","5.00","10.00",["#69c9ab"]);
-	makeRarity("Rare","10.00","25.00",["#4bd3db"]);
-	makeRarity("Tactical","25.00","50.00",["#3b80e1"]);
-	makeRarity("Epic","50.00","100.00",["#7626eb"]);
-	makeRarity("Legendary","100.00","250.00",["#f0ee36","#c5c31f"]);
-	makeRarity("Exotic","250.00","500.00",["#f0be35","#d16634"]);
-	makeRarity("Preeminent","500.00","1000.00",["#f06a35","#d14e34"]);
-	makeRarity("Mythical","1000.00","2500.00",["#f08935","#bd2a53"]);
-	data.luck += (RNG**(1/5)-1)/10;
+	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:["#888"]});
+	makeRarity({name:"Uncommon",min:"2.50",max:"5.00",gradient:["#8cc28e"]});
+	makeRarity({name:"Surreal",min:"5.00",max:"10.00",gradient:["#69c9ab"]});
+	makeRarity({name:"Rare",min:"10.00",max:"25.00",gradient:["#4bd3db"]});
+	makeRarity({name:"Tactical",min:"25.00",max:"50.00",gradient:["#3b80e1"]});
+	makeRarity({name:"Epic",min:"50.00",max:"100.00",gradient:["#7626eb"]});
+	makeRarity({name:"Legendary",min:"100.00",max:"250.00",gradient:["#f0ee36","#c5c31f"]});
+	makeRarity({name:"Exotic",min:"250.00",max:"500.00",gradient:["#f0be35","#d16634"]});
+	makeRarity({name:"Preeminent",min:"500.00",max:"1000.00",gradient:["#f06a35","#d14e34"]});
+	makeRarity({name:"Mythical",min:"1000.00",max:"2500.00",gradient:["#f03535","#bd2a53"]});
+	data.luck += (RNG**(1/3)-1)/10;
 	data.RNG = decimalDigits(RNG,2);
 	data.cooldown = uptime+15;
 	if (Number(data.RNG) > Number(data.highestRNG)) {
