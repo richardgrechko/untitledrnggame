@@ -67,11 +67,11 @@ function makeRarity(options) {
 			speed: options.gradient.speed ?? 1,
 		}
 	}
-	console.log(Number(decimalDigits(RNG,2)) >= Number(options.min),Number(decimalDigits(RNG,2)) < Number(options.max))
+	console.log(Number(decimalDigits(RNG,2)) >= Number(options.min),Number(decimalDigits(RNG,2)) < Number(options.max),options.secrets.includes(decimalDigits(RNG,2)))
 	if (
 		Number(decimalDigits(RNG,2)) >= Number(options.min)
 		&& Number(decimalDigits(RNG,2)) < Number(options.max)
-		&& options.secrets.includes(decimalDigits(rawRNG,2))
+		&& options.secrets.includes(decimalDigits(RNG,2))
 	) {
 		data.rarity.name = options.name;
 		data.rarity.gradient = [options.gradient.colors,options.gradient.speed];
