@@ -90,7 +90,7 @@ function roll() {
 	makeRarity("Epic","50.00","100.00",["#7626eb"]);
 	data.RNG = decimalDigits(RNG,2);
 	data.cooldown = uptime+15;
-	if (Number(data.RNG) > data.highestRNG) {
+	if (Number(data.RNG) > Number(data.highestRNG)) {
 		data.highestRNG = data.RNG;
 		data.highestRarity = data.rarity;
 	}
