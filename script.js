@@ -104,7 +104,6 @@ function roll() {
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 }
-document.getElementsByClassName("rngbutton")[0].disabled = false;
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
