@@ -67,8 +67,8 @@ function makeRarity(options) {
 		}
 	}
 	if (
-		Number(decimalDigits(rawRNG,2)) >= Number(options.min)
-		&& Number(decimalDigits(rawRNG,2)) < Number(options.max)
+		Number(decimalDigits(RNG,2)) >= Number(options.min)
+		&& Number(decimalDigits(RNG,2)) < Number(options.max)
 		&& options.secrets.includes(decimalDigits(rawRNG,2))
 	) {
 		data.rarity.name = options.name;
@@ -113,7 +113,7 @@ function makeFinalRarity(options) {
 		}
 	}
 	if (
-		Number(decimalDigits(rawRNG,2)) >= Number(options.chance)
+		Number(decimalDigits(RNG,2)) >= Number(options.chance)
 	) {
 		data.rarity.name = options.name;
 		data.rarity.gradient = [options.gradient.colors,options.gradient.speed];
