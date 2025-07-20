@@ -10,6 +10,9 @@ html {
 #rarity {
 	font-size: 40px;
 }
+#luck {
+	font-size: 20px;
+}
 .rngbutton {
 	background-color: #fff;
 	color: black;
