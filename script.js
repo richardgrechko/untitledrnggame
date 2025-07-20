@@ -91,7 +91,7 @@ function roll() {
 	makeRarity("Exotic","250.00","500.00",["#f0be35","#d16634"]);
 	makeRarity("Preeminent","500.00","1000.00",["#f06a35","#d14e34"]);
 	makeRarity("Mythical","1000.00","2500.00",["#f08935","#bd2a53"]);
-	data.luck += RNG**(1/5)-1;
+	data.luck += (RNG**(1/5)-1)/10;
 	data.RNG = decimalDigits(RNG,2);
 	data.cooldown = uptime+15;
 	if (Number(data.RNG) > Number(data.highestRNG)) {
