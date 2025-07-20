@@ -107,6 +107,9 @@ function roll() {
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
+	if (!document.querySelector("input.rngbutton").disabled) {
+		document.querySelector("input.rngbutton").disabled = false;
+	}
 	if (uptime < data.cooldown) {
 		document.querySelector("input.rngbutton").disabled = true;
 		document.querySelector("input.rngbutton").value = decimalDigits(data.cooldown-uptime,3);
