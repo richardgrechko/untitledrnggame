@@ -23,7 +23,7 @@ let data = {
 	},
 	chance: "1.01",
 }
-let uptime = 0, RNG = 1.01, mutationMultis = 1;
+let uptime = 0, RNG = 1.01, mutationMultis = 1, mutationChances = {};
 function decimalDigits(number, digits) {
 	let idfk = Math.floor(Math.log10(Math.abs(number)))
 	return (
@@ -120,9 +120,9 @@ function makeMutation(options) {
 		multi: options.multi ?? "5.00",
 		gradient: options.gradient ?? ["#ccc"],
 	}
-	window.mutationChances[options.name] = (1/Math.random())**(Math.log10(data.luck)+1);
+	mutationChances[options.name] = (1/Math.random())**(Math.log10(data.luck)+1);
 	if (
-		Number(decimalDigits(window.mutationChances[options.name],2)) >= Number(options.chance)
+		Number(decimalDigits(mutationChances[options.name],2)) >= Number(options.chance)
 	) {
 		data.rarity.mutations.push({
 			name: options.name,
@@ -171,8 +171,7 @@ function update(){
 	}
 	document.getElementById("rarity").innerText += "<span style=\"background: "
 		+ makeGradient(data.rarity.gradient) 
-		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span>";
-	document.getElementById("rarity").innerText += " ~ "
+		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
 	for (var mut of data.highestRarity.mutations) {
 		document.getElementById("rarity").innerText += "<span style=\"background: "
 		+ makeGradient(mut.gradient)
@@ -181,7 +180,7 @@ function update(){
 	document.getElementById("rarity").innerText += "<span style=\"background: "
 		+ makeGradient(data.highestRarity.gradient)
 		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
-	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
+	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText.replace(" ~"," ~ ");
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 	document.querySelector("input.rngbutton").disabled = document.querySelector("input.rngbutton").disabled || false;
 	if (uptime < data.cooldown) {
