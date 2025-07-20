@@ -95,15 +95,14 @@ function roll() {
 		data.highestRarity = data.rarity;
 	}
 	document.getElementById("rng").innerText = commaFormat(data.RNG) + " ~ " + commaFormat(data.highestRNG) + " RNG";
-	document.getElementById("rarity").innerText = "";
-	document.getElementById("rarity").innerText += "<span style=\"background: ";
-	document.getElementById("rarity").innerText += makeGradient(data.rarity.gradient);
-	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
-	document.getElementById("rarity").innerText += " <span style=\"background: ";
-	document.getElementById("rarity").innerText += makeGradient(data.highestRarity.gradient);
-	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
+	document.getElementById("rarity").innerText = "<span style=\"background: "
+		+ makeGradient(data.rarity.gradient) 
+		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ "
+		+ "<span style=\"background: "
+		+ makeGradient(data.highestRarity.gradient)
+		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
-	document.getElementById("luck").innerHTML = "You have <div style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</div> luck.";
+	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 }
 !function update(){
 	/* Updates */
