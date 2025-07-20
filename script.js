@@ -99,7 +99,7 @@ function roll() {
 	document.getElementById("rarity").innerText += "<span style=\"background: ";
 	document.getElementById("rarity").innerText += makeGradient(data.rarity.gradient);
 	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.rarity.name + "</span> ~ ";
-	document.getElementById("rarity").innerText += "<span style=\"background: ";
+	document.getElementById("rarity").innerText += " <span style=\"background: ";
 	document.getElementById("rarity").innerText += makeGradient(data.highestRarity.gradient);
 	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
@@ -109,11 +109,11 @@ function roll() {
 	/* Updates */
 	uptime = performance.now()/1000;
 	if (uptime < data.cooldown) {
-		document.getElementById("roll").disabled = true;
-		document.getElementById("roll").value = decimalDigits(data.cooldown-uptime,3) + "s";
+		document.getElementsByClassName("rngbutton").disabled = true;
+		document.getElementsByClassName("rngbutton").value = decimalDigits(data.cooldown-uptime,3) + "s";
 	} else {
-		document.getElementById("roll").disabled = false;
-		document.getElementById("roll").value = "Roll!";
+		document.getElementsByClassName("rngbutton").disabled = false;
+		document.getElementsByClassName("rngbutton").value = "Roll!";
 	}
 	requestAnimationFrame(update)
 }()
