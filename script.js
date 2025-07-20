@@ -103,7 +103,7 @@ function roll() {
 	document.getElementById("rarity").innerText += makeGradient(data.highestRarity.gradient);
 	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
-	document.getElementById("luck").innerHTML = "You have <div style=\"font-size: 18px;\">" + decimalDigits(data.luck,4) + "</div> luck.";
+	document.getElementById("luck").innerHTML = "You have <div style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</div> luck.";
 }
 !function update(){
 	/* Updates */
