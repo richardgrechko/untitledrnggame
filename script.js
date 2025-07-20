@@ -105,7 +105,7 @@ function roll() {
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 }
 if (document.getElementsByClassName("rngbutton")[0].disabled == undefined) {
-	document.getElementsByClassName("rngbutton")[0].disabled
+	document.getElementsByClassName("rngbutton")[0].disabled = false;
 }
 function update(){
 	/* Updates */
