@@ -96,7 +96,9 @@ function roll() {
 	data.cooldown = uptime+15;
 	if (Number(data.RNG) > Number(data.highestRNG)) {
 		data.highestRNG = data.RNG;
-		data.highestRarity = data.rarity;
+		data.highestRarity.name = data.rarity.name;
+		data.highestRarity.gradient = data.rarity.gradient;
+		data.highestRarity.mutations = data.rarity.mutations;
 	}
 	document.getElementById("rng").innerText = commaFormat(data.RNG) + " ~ " + commaFormat(data.highestRNG) + " RNG";
 	document.getElementById("rarity").innerText = "<span style=\"background: "
