@@ -50,10 +50,10 @@ function commaFormat(num) {
 function makeGradient(gradient,speed=1) {
 	let someGradient = "linear-gradient(" + (uptime*90*speed) + "deg, ";
 	for (let i of gradient) {
-		someGradient += (gradient[gradient.length - 1] != i) ? (i + ", ") : i;
+		someGradient += i + ", ";
 	}
 	someGradient += ")";
-	return someGradient
+	return someGradient.replace(", )",")");
 }
 function makeRarity(options) {
 	options = {
