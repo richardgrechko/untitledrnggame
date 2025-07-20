@@ -163,6 +163,7 @@ function roll() {
 	makeMutation({name:"Advanced",chance:"500.00",multi:"35.00",gradient:["#5eabe6","#5397cb"]});
 	data.luck += (RNG**(1/3)-1)/10;
 	data.RNG = decimalDigits(RNG,2);
+	data.rawRNG = decimalDigits(rawRNG,2);
 	data.cooldown = uptime+15;
 	if (Number(data.rawRNG) > Number(data.highestRawRNG)) {
 		data.highestRawRNG = data.rawRNG;
