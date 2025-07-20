@@ -148,6 +148,7 @@ function roll() {
 	RNG = (1/Math.random())**(Math.log10(data.luck)+1);
 	rawRNG = RNG;
 	data.RNG = decimalDigits(RNG,2);
+	mutationMultis = 1;
 	makeChanceSecret({name:"¿Cursed?",chance:"1.00",gradient:{colors:["#200","#500","#200"],speed:5}});
 	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:{colors:["#888"]}});
 	makeRarity({name:"Uncommon",min:"2.50",max:"5.00",gradient:{colors:["#8cc28e"]}});
