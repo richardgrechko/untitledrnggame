@@ -67,6 +67,7 @@ function makeRarity(options) {
 			speed: options.gradient.speed ?? 1,
 		}
 	}
+	console.log(options.min,options.max)
 	if (
 		Number(decimalDigits(RNG,2)) >= Number(options.min)
 		&& Number(decimalDigits(RNG,2)) < Number(options.max)
