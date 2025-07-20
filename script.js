@@ -107,15 +107,12 @@ function roll() {
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
-	if (document.querySelector("button.rngbutton").disabled == null) {
-		document.querySelector("button.rngbutton").disabled = false;
-	}
 	if (uptime < data.cooldown) {
-		document.querySelector("button.rngbutton").disabled = true;
-		document.querySelector("button.rngbutton").value = decimalDigits(data.cooldown-uptime,3);
+		document.querySelector("input.rngbutton").disabled = true;
+		document.querySelector("input.rngbutton").value = decimalDigits(data.cooldown-uptime,3);
 	} else {
-		document.querySelector("button.rngbutton").disabled = false;
-		document.querySelector("button.rngbutton").value = "Roll!";
+		document.querySelector("input.rngbutton").disabled = false;
+		document.querySelector("input.rngbutton").value = "Roll!";
 	}
 	setTimeout(update,0)
 }
