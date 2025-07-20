@@ -104,12 +104,12 @@ function roll() {
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 }
-if (document.querySelector("button.rngbutton").disabled == null) {
-	document.querySelector("button.rngbutton").disabled = false;
-}
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
+	if (document.querySelector("button.rngbutton").disabled == null) {
+		document.querySelector("button.rngbutton").disabled = false;
+	}
 	if (uptime < data.cooldown) {
 		document.querySelector("button.rngbutton").disabled = true;
 		document.querySelector("button.rngbutton").value = decimalDigits(data.cooldown-uptime,3);
