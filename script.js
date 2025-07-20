@@ -82,7 +82,7 @@ function makeFinalRarity(name="Common",chance="1.01",gradient=["#888"]) {
 }
 function roll() {
 	data.luck += RNG**(1/5)-1;
-	RNG = (1/Math.random())**data.luck;
+	RNG = (1/Math.random())**(Math.log10(data.luck)+10);
 	makeRarity("Common","1.01","2.50",["#888"]);
 	makeRarity("Uncommon","2.50","5.00",["#8cc28e"]);
 	makeRarity("Surreal","5.00","10.00",["#69c9ab"]);
@@ -103,7 +103,7 @@ function roll() {
 	document.getElementById("rarity").innerText += makeGradient(data.highestRarity.gradient);
 	document.getElementById("rarity").innerText += "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">" + data.highestRarity.name + "</span>";
 	document.getElementById("rarity").innerHTML = document.getElementById("rarity").innerText;
-	document.getElementById("rarity").innerText = decimalDigits(data.luck,4);
+	document.getElementById("luck").innerHTML = "You have <div style=\"font-size: 18px;\">" + decimalDigits(data.luck,4) + "</div> luck.";
 }
 !function update(){
 	/* Updates */
