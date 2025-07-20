@@ -105,7 +105,7 @@ function roll() {
 	document.getElementById("luck").innerHTML = "You have <span style=\"font-size: 32px;\">" + decimalDigits(data.luck,4) + "</span> luck.";
 }
 document.getElementsByClassName("rngbutton")[0].disabled = false;
-!function update(){
+function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
 	if (uptime < data.cooldown) {
@@ -116,4 +116,5 @@ document.getElementsByClassName("rngbutton")[0].disabled = false;
 		document.getElementsByClassName("rngbutton")[0].value = "Roll!";
 	}
 	setTimeout(update,0)
-}()
+}
+update()
