@@ -166,6 +166,7 @@ function roll() {
 	data.rawRNG = decimalDigits(rawRNG,2);
 	data.cooldown = uptime+15;
 	if (Number(data.rawRNG) > Number(data.highestRawRNG)) {
+		data.highestRNG = data.RNG;
 		data.highestRawRNG = data.rawRNG;
 		data.highestRarity.name = data.rarity.name;
 		data.highestRarity.gradient = data.rarity.gradient;
