@@ -90,7 +90,7 @@ function roll() {
 	makeRarity("Epic","50.00","100.00",["#7626eb"]);
 	data.RNG = decimalDigits(RNG,2);
 	data.cooldown = uptime+15;
-	if (data.RNG > data.highestRNG) {
+	if (Number(data.RNG) > data.highestRNG) {
 		data.highestRNG = data.RNG;
 		data.highestRarity = data.rarity;
 	}
@@ -115,5 +115,5 @@ document.getElementsByClassName("rngbutton")[0].disabled = false;
 		document.getElementsByClassName("rngbutton")[0].disabled = false;
 		document.getElementsByClassName("rngbutton")[0].value = "Roll!";
 	}
-	requestAnimationFrame(update)
+	setTimeout(update,0)
 }()
