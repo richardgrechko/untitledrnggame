@@ -5,12 +5,12 @@ let data = {
 	highestRawRNG: "1.01",
 	rarity: {
 		name: "Common",
-		gradient: ["#888"],
+		gradient: [["#888"],1],
 		mutations: [],
 	},
 	highestRarity: {
 		name: "Common",
-		gradient: ["#888"],
+		gradient: [["#888"],1],
 		mutations: [],
 	},
 	secret: false,
@@ -47,7 +47,7 @@ function commaFormat(num) {
 		return portions[0]
 	return portions[0] + "." + portions[1]
 }
-function makeGradient(gradient,speed) {
+function makeGradient(gradient,speed=1) {
 	let someGradient = "linear-gradient(" + (uptime*90*speed) + "deg, ";
 	for (let i of gradient) {
 		someGradient += (gradient[gradient.length - 1] != i) ? (i + ", ") : i;
