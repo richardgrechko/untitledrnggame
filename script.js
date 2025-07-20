@@ -108,11 +108,11 @@ function roll() {
 	/* Updates */
 	uptime = performance.now()/1000;
 	if (uptime < data.cooldown) {
-		document.getElementsByClassName("rngbutton").disabled = true;
-		document.getElementsByClassName("rngbutton").value = decimalDigits(data.cooldown-uptime,3) + "s";
+		document.getElementsByClassName("rngbutton")[0].disabled = true;
+		document.getElementsByClassName("rngbutton")[0].value = decimalDigits(data.cooldown-uptime,3) + "s";
 	} else {
-		document.getElementsByClassName("rngbutton").disabled = false;
-		document.getElementsByClassName("rngbutton").value = "Roll!";
+		document.getElementsByClassName("rngbutton")[0].disabled = false;
+		document.getElementsByClassName("rngbutton")[0].value = "Roll!";
 	}
 	requestAnimationFrame(update)
 }()
