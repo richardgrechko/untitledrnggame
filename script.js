@@ -148,7 +148,6 @@ function roll() {
 	data.rarity.mutations = [];
 	RNG = (1/Math.random())**(Math.log10(data.luck)+1);
 	rawRNG = RNG;
-	data.RNG = decimalDigits(RNG,2);
 	mutationMultis = 1;
 	makeChanceSecret({name:"¿Cursed?",chance:"1.00",gradient:{colors:["#200","#500","#200"],speed:5}});
 	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:{colors:["#888"]}});
@@ -168,7 +167,8 @@ function roll() {
 	makeMutation({name:"Advanced",chance:"500.00",multi:"35.00",gradient:["#5eabe6","#5397cb"]});
 	RNG *= mutationMultis;
 	rawRNG *= mutationMultis;
-	data.luck += (RNG**(1/3)-1)/10;
+	data.luck += (RNG**(1/3)-1)/100;
+	data.RNG = decimalDigits(RNG,2);
 	data.rawRNG = decimalDigits(rawRNG,2);
 	data.cooldown = uptime+15;
 	if (Number(data.rawRNG) > Number(data.highestRawRNG)) {
