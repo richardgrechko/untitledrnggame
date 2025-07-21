@@ -1,3 +1,4 @@
+// why they failing cuh
 let data = {
 	RNG: "1.01",
 	rawRNG: "1.01",
