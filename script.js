@@ -6,12 +6,12 @@ let data = {
 	highestRawRNG: "1.01",
 	rarity: {
 		name: "Common",
-		gradient: [["#888"],1],
+		gradient: [["#8cc28e"],1],
 		mutations: [],
 	},
 	highestRarity: {
 		name: "Common",
-		gradient: [["#888"],1],
+		gradient: [["#8cc28e"],1],
 		mutations: [],
 	},
 	secret: false,
@@ -21,7 +21,7 @@ let data = {
 }, youRolled = {
 	rarity: {
 		name: "Common",
-		gradient: ["#888"],
+		gradient: ["#8cc28e"],
 	},
 	chance: "1.01",
 }
@@ -63,7 +63,7 @@ function makeRarity(options) {
 		secrets: options.secrets ?? ["1.00"],
 		name: options.name ?? "Common",
 		gradient: {
-			colors: options.gradient.colors ?? ["#888"],
+			colors: options.gradient.colors ?? ["#8cc28e"],
 			speed: options.gradient.speed ?? 1,
 		}
 	}
@@ -87,7 +87,7 @@ function makeChanceSecret(options) {
 		chance: options.chance ?? "1.01",
 		name: options.name ?? "Common",
 		gradient: {
-			colors: options.gradient.colors ?? ["#888"],
+			colors: options.gradient.colors ?? ["#8cc28e"],
 			speed: options.gradient.speed ?? 1,
 		}
 	}
@@ -110,7 +110,7 @@ function makeFinalRarity(options) {
 		chance: options.chance ?? "1.01",
 		name: options.name ?? "Common",
 		gradient: {
-			colors: options.gradient.colors ?? ["#888"],
+			colors: options.gradient.colors ?? ["#8cc28e"],
 			speed: options.gradient.speed ?? 1,
 		}
 	}
@@ -150,9 +150,9 @@ function roll() {
 	rawRNG = RNG;
 	mutationMultis = 1;
 	makeChanceSecret({name:"¿Cursed?",chance:"1.00",gradient:{colors:["#200","#500","#200"],speed:5}});
-	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:{colors:["#888"]}});
-	makeRarity({name:"Uncommon",min:"2.50",max:"5.00",gradient:{colors:["#8cc28e"]}});
-	makeRarity({name:"Surreal",min:"5.00",max:"10.00",gradient:{colors:["#69c9ab"]}});
+	makeRarity({name:"Common",min:"1.01",max:"2.50",gradient:{colors:["#8cc28e"]}});
+	makeRarity({name:"Uncommon",min:"2.50",max:"5.00",gradient:{colors:["#27b844"]}});
+	makeRarity({name:"Surreal",min:"5.00",max:"10.00",gradient:{colors:["#33d699"]}});
 	makeRarity({name:"Rare",min:"10.00",max:"25.00",gradient:{colors:["#4bd3db"]}});
 	makeRarity({name:"Tactical",min:"25.00",max:"50.00",gradient:{colors:["#3b80e1"]}});
 	makeRarity({name:"Epic",min:"50.00",max:"100.00",gradient:{colors:["#7626eb"]}});
