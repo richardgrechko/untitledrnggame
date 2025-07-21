@@ -183,7 +183,7 @@ document.querySelector("input.rngbutton").addEventListener("click",roll);
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
-	document.getElementById("copywarning").innerText = "<span style=\"background: "
+	document.getElementById("copywarning").innerHTML = "<span style=\"background: "
 		+ makeGradient(["#200","#f00","#200"],10)
 		+ ";\">Exact copies, including sites that are almost exact copies, are absolutely not allowed!</span>";
 	document.getElementById("rng").innerText = commaFormat(data.RNG) + ((data.rawRNG != data.RNG) ? (" [" + data.rawRNG + "]") : "") + " ~ " + commaFormat(data.highestRNG) + ((data.highestRawRNG != data.highestRNG) ? (" [" + data.highestRawRNG + "]") : "") + " RNG";
