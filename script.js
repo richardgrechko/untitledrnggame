@@ -183,9 +183,10 @@ document.querySelector("input.rngbutton").addEventListener("click",roll);
 function update(){
 	/* Updates */
 	uptime = performance.now()/1000;
-	document.getElementById("copywarning").innerHTML = "<span style=\"background: "
+	document.getElementById("copywarning").innerText = "<span style=\"background: "
 		+ makeGradient(["#200","#f00","#200"],10)
-		+ ";\">Exact copies, including sites that are almost exact copies, are absolutely not allowed!</span>";
+		+ "; background-clip: text; -webkit-background-clip: text; color: transparent; text-shadow: 2px 2px 1.5px #ffffff30;\">Exact copies, including sites that are almost exact copies, are absolutely not allowed!</span>";
+	document.getElementById("copywarning").innerHTML = document.getElementById("copywarning").innerText;
 	document.getElementById("rng").innerText = commaFormat(data.RNG) + ((data.rawRNG != data.RNG) ? (" [" + data.rawRNG + "]") : "") + " ~ " + commaFormat(data.highestRNG) + ((data.highestRawRNG != data.highestRNG) ? (" [" + data.highestRawRNG + "]") : "") + " RNG";
 	document.getElementById("rarity").innerText = "";
 	for (var mut of data.rarity.mutations) {
