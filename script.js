@@ -49,7 +49,7 @@ function commaFormat(num) {
 	return portions[0] + "." + portions[1]
 }
 function makeGradient(gradient,speed=1) {
-	let someGradient = "linear-gradient(" + (uptime*90*speed) + "deg, ";
+	let someGradient = "linear-gradient(" + (90+uptime*20*speed) + "deg, ";
 	for (let i of gradient) {
 		someGradient += i + ", ";
 	}
